@@ -35,6 +35,7 @@ namespace webapp
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
                     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                        .AddDownstreamWebApi("DownstreamApi", Configuration.GetSection("DownstreamApi"))
                         .AddMicrosoftGraph(Configuration.GetSection("DownstreamApi"))
                         .AddInMemoryTokenCaches();
 
